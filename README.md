@@ -1,37 +1,41 @@
+
 # OFDView
+## 介绍
 
-#### 介绍
-OFDView是一个采用HTML5、SVG技术构建的OFD版式阅读器，兼容IE、Edge、Chrome、Firefox等主流浏览器，支持在PC、平板和手机上使用。
+&emsp;**OFDView**是一个采用HTML5、SVG技术构建的OFD版式阅读器。
 
-#### 软件架构
-软件架构说明
+&emsp;**OFDView**提供OFD文件打开、预览、打印、翻页、页面缩放等常用操作功能，支持在PC、平板和手机上使用，兼容IE、Edge、Chrome、Firefox等主流浏览器，以及微信、QQ、支付宝等内置浏览器。
 
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+## 效果示例： 
+![示例](./img/cnofd.js-1.png)
 
 
-#### 特技
+## 快速上手
+<ul dir="auto">
+<li>
+<p dir="auto">1.参考“ofdview.html”范例，把“cnofd.css”和“cnofd.umd.min.js”文件引入您的Html文件即可。</p>
+</li>
+<li>
+<p dir="auto">2.除了通过页面自带“打开”按钮选择浏览器本地OFD文件外，OFDView提供file参数，用于加载远程OFD文件。如：http://localhost:8080/ofdview.html?file=mytest.ofd
+</p>
+</li>
+</ul>
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+
+## 技术文档
+<ul dir="auto">
+<li>
+<p dir="auto">技术官网/在线演示：  <a href="http://www.cnofd.cn:18080" target="view_window" rel="nofollow">http://www.cnofd.cn:18080/</a></p>
+</li>
+</ul>
+
+## 交流互动
+<ul dir="auto">
+<li>
+<p dir="auto">QQ交流群：</p>
+</li>
+</ul>
+
+&emsp;![avatar](./img/QQLink.png)
+
+
