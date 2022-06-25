@@ -74,8 +74,12 @@ function isIE() {
 	return false;
 }
 
-var DPI2PX = 96.0 / 25.4;
 this.screenWidth = document.body.clientWidth;
+
+// cnofd提供浏览器端和服务端两种OFD版式文件的解析渲染模式。
+// 服务器渲染模式；浏览器端渲染时，请注释以下两行代码
+//Object(cnofd["setRenderMode"])("Server");
+//Object(cnofd["setServerUrl"])("http://localhost:8080/api/ofdrender/");
 
 data: function data() {
     return {
@@ -83,7 +87,6 @@ data: function data() {
         ofdBase64: null,
         pageIndex: 1,
         pageCount: 0,
-        scale: 0,
         title: null,
         value: null,
         ofdDoc: null,
@@ -166,6 +169,11 @@ function fileChanged() {
         return;
     }
 
+    Object(cnofd["setScaleValue"])(1.0);
+    var selectZoom = document.getElementById("zoomValue");
+    if (selectZoom)
+        selectZoom.value = "1.0";
+        
     var that = this;
     var reader = new FileReader();
     reader.readAsDataURL(this.file);
@@ -175,13 +183,9 @@ function fileChanged() {
     };
 
     this.getOfdDocument(this.file, this.screenWidth);
-    $("#file")[0].value = null;
 }
 
 function getOfdDocument(file, screenWidth) {
-    var selectZoom = document.getElementById("zoomValue");
-    selectZoom.value = "1.0";
-    
     var that = this;
 
     $("#loading").show();
@@ -191,10 +195,10 @@ function getOfdDocument(file, screenWidth) {
     Object(cnofd["ofdParse"])({
         ofd: file,
         success: function success(res) {
-            that.ofdDoc = res[0];
+            that.ofdDoc = res;
             that.pageIndex = 1;
-            that.pageCount = res[0].pages.length;
-            var divs = Object(cnofd["ofdRender"])(res[0], screenWidth);
+            that.pageCount = res.pageCount;
+            var divs = Object(cnofd["ofdRender"])(res, screenWidth);
             that.displayOfdDiv(divs);
             $("#loading").hide();
         },
@@ -215,7 +219,6 @@ function getOfdDocument(file, screenWidth) {
 }
 
 function displayOfdDiv(divs) {
-    this.scale = Object(cnofd["getScaleValue"])();
     var contentDiv = document.getElementById("content");
     contentDiv.innerHTML = "";
 
@@ -241,9 +244,13 @@ function zoomIn() {
     if (selectZoom.selectedIndex > 0) {
         selectZoom.selectedIndex = selectZoom.selectedIndex - 1;
         
-        Object(cnofd["setScaleValue"])(selectZoom.options[selectZoom.selectedIndex].value * DPI2PX);
+        Object(cnofd["setScaleValue"])(selectZoom.options[selectZoom.selectedIndex].value);
         var divs = Object(cnofd["ofdRenderByScale"])(this.ofdDoc);
-        this.displayOfdDiv(divs);        
+        if (divs) {
+          this.displayOfdDiv(divs);
+        } else {
+          this.getOfdDocument(this.file, this.screenWidth);
+        }  
     }
 }
 
@@ -252,17 +259,25 @@ function zoomOut() {
     if (selectZoom.selectedIndex < selectZoom.length-1) {
         selectZoom.selectedIndex = selectZoom.selectedIndex + 1;
         
-        Object(cnofd["setScaleValue"])(selectZoom.options[selectZoom.selectedIndex].value * DPI2PX);
+        Object(cnofd["setScaleValue"])(selectZoom.options[selectZoom.selectedIndex].value);
         var divs = Object(cnofd["ofdRenderByScale"])(this.ofdDoc);
-        this.displayOfdDiv(divs);
+        if (divs) {
+          this.displayOfdDiv(divs);
+        } else {
+          this.getOfdDocument(this.file, this.screenWidth);
+        }  
     }
 }
 
 function zoomChange() {
     var selectZoom = document.getElementById("zoomValue");
-    Object(cnofd["setScaleValue"])(selectZoom.options[selectZoom.selectedIndex].value * DPI2PX);
+    Object(cnofd["setScaleValue"])(selectZoom.options[selectZoom.selectedIndex].value);
     var divs = Object(cnofd["ofdRenderByScale"])(this.ofdDoc);
-    this.displayOfdDiv(divs);
+    if (divs) {
+      this.displayOfdDiv(divs);
+    } else {
+      this.getOfdDocument(this.file, this.screenWidth);
+    }  
 }
 
 function scrool() {
@@ -375,12 +390,12 @@ function print() {
                 canvas.style.boxShadow = "";
                 printhtml = printhtml + canvas.outerHTML;
             }
-            printOrder(printhtml);     
+            printIE(printhtml);     
         }
     }
 }
 
-function printOrder(printhtml) {
+function printIE(printhtml) {
     var iframe = document.createElement("iframe"); 
     iframe.id = "printf"; 
     iframe.style.width = "0"; 
