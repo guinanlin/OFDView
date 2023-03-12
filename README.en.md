@@ -19,6 +19,10 @@
 <p dir="auto">2.除了通过页面自带“打开”按钮选择浏览器本地OFD文件外，OFDView提供file参数，用于加载远程OFD文件。如：http://localhost:8080/ofdview.html?file=mytest.ofd
 </p>
 </li>
+<li>
+<p dir="auto">3.OFDView提供scale参数，指定实际大小（1.0），自定义缩放比例（1.5等），或者自适应页面宽度（width）。如：http://localhost:8080/ofdview.html?file=mytest.ofd&scale=width
+</p>
+</li>
 </ul>
 
 
