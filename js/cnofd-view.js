@@ -195,8 +195,6 @@ function fileChanged() {
         return;
     }
 
-    // 新打开OFD文件时，还原成页面实际尺寸显示
-    //Object(cnofd["setScaleValue"])(1.0);
     Object(cnofd["setScaleValue"])(this.pageZoomScale);
     var selectZoom = document.getElementById("zoomValue");
     if (selectZoom)
@@ -211,7 +209,6 @@ function fileChanged() {
     };
 
     this.getOfdDocument(this.file, this.screenWidth, this.pageZoomScale);
-    //$("#file")[0].value = null;
 }
 
 function getOfdDocument(file, screenWidth, pageZoomScale) {
@@ -443,9 +440,7 @@ function print() {
     }
 }
 
-// IE浏览器，在iframe里调用打印 
 function printIE(printhtml) {
-    //新建一个iframe 
     var iframe = document.createElement("iframe"); 
     iframe.id = "printf"; 
     iframe.style.width = "0"; 
@@ -453,7 +448,6 @@ function printIE(printhtml) {
     iframe.style.height = "0"; 
     iframe.style.border = "none";
      
-    //将iframe插入到printBody里 
     document.body.appendChild(iframe); 
     
     setTimeout(function () { 
