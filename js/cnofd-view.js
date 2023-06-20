@@ -170,28 +170,12 @@ function fileChanged() {
     var ext = this.file.name.replace(/.+\./, "");
 
     if (["ofd"].indexOf(ext) === -1) {
-        this.$alert("error", "仅支持ofd文件类型", {
-            confirmButtonText: "确定",
-            callback: function callback(action) {
-                this.$message({
-                    type: "info",
-                    message: "action: ".concat(action)
-                });
-            }
-        });
+        this.alert("仅支持ofd文件类型！");
         return;
     }
 
     if (this.file.size > 10 * 1024 * 1024) {
-        this.$alert("error", "文件大小超过10MB", {
-            confirmButtonText: "确定",
-            callback: function callback(action) {
-                this.$message({
-                    type: "info",
-                    message: "action: ".concat(action)
-                });
-            }
-        });
+        this.alert("文件大小超过10MB！");
         return;
     }
 
@@ -236,15 +220,7 @@ function getOfdDocument(file, screenWidth, pageZoomScale) {
         fail: function fail(error) {
             $("#loading").hide();
 
-            that.$alert("OFD打开失败", error, {
-                confirmButtonText: "确定",
-                callback: function callback(action) {
-                    this.$message({
-                        type: "info",
-                        message: "action: ".concat(action)
-                    });
-                }
-            });
+            that.alert("OFD打开失败！\n" + error);
         }
     });
 }
