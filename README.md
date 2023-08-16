@@ -29,7 +29,7 @@
 ## 技术文档
 <ul dir="auto">
 <li>
-<p dir="auto">技术官网/在线演示：  <a href="http://www.cnofd.cn:18080" target="view_window" rel="nofollow">http://www.cnofd.com.cn:18080/</a></p>
+<p dir="auto">技术官网/在线演示：  <a href="http://www.cnofd.com.cn:18080" target="view_window" rel="nofollow">http://www.cnofd.com.cn:18080/</a></p>
 </li>
 </ul>
 
