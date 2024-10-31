@@ -1,0 +1,22 @@
+{
+  "name": "ofdview",
+  "version": "1.0.0",
+  "description": "&emsp;**OFDView**是一个采用HTML5、SVG技术构建的OFD版式阅读器。",
+  "main": "js/cnofd-view.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/lynnguinan/ofdview.git"
+  },
+  "keywords": [
+    "ofd",
+    "react"
+  ],
+  "author": "guinan.lin",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
+  }
+}
